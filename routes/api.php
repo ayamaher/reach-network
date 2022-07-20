@@ -2,6 +2,9 @@
 
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\TagController;
+use App\Http\Controllers\Api\AdController;
+use App\Http\Controllers\Api\AdvertiserController;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -32,8 +35,9 @@ Route::group(['prefix' => 'v1', 'namespace' => 'Api'], function () {
     Route::put('/tags/{id}', [TagController::class, 'update']);
     Route::delete('/tags/{id}', [TagController::class, 'delete']);
 
-//    Route::resource('tags', 'TagController');
-//    Route::resource('ads', 'AdController');
+    Route::post('/ads', [AdController::class, 'listAds']);
+
+    Route::get('advertiser/{id}/ads', [AdvertiserController::class, 'listAdvertiserAds']);
 
 });
 
