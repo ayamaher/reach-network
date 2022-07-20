@@ -4,17 +4,15 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 
-use App\Models\Advertiser;
-use App\Repositories\AdRepo;
-use Illuminate\Http\Request;
+use App\Models\Ad;
+
 
 class AdvertiserController extends Controller
 {
 
     public function listAdvertiserAds($id)
     {
-        $ads = Advertiser::where('id', $id)->with('ads')->get();
-        eval(\Psy\sh());
-        return response()->json(['data' => $ads, 'status' => 200]);
+        $advertiserAds = Ad::where('advertiser_id', $id)->get();
+        return response()->json(['data' => $advertiserAds->toArray(), 'status' => 200]);
     }
 }
